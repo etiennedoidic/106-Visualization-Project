@@ -1,15 +1,12 @@
 
 
-h1 { font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; color: blue; } 
-h3 { font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: blue;} 
-p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; } 
+h1 { font-family: 'Lucida Console', monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; color: red; } 
+h3 { font-family: 'Lucida Console', monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
+p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; color: white;} 
 
-#vitalScorecards {
-    display: grid;
-    grid-column-gap: 50px;
-    grid-template-columns: auto auto auto;
-    text-align: center;
-}
+#bgrad {
+    background-color: darkblue; /* For browsers that do not support gradients */
+    background-image: linear-gradient(darkblue, black);}
 
 /* #summaryCharts {
     display: flex;
