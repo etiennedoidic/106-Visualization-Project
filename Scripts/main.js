@@ -109,9 +109,11 @@ var mapdata = [
 	
 function plotMap() {
 	// Create the map
+	
 Highcharts.mapChart('myMap', {
 	chart: {
-		map: 'countries/us/us-all'
+		map: 'countries/us/us-all',
+		backgroundColor: '#33cccc'
 	},
 
 	title: {
@@ -159,14 +161,6 @@ Highcharts.mapChart('myMap', {
             enabled: true,
             format: '{point.name}'
         }
-    }, {
-        name: 'Separators',
-        type: 'mapline',
-        data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
-        color: 'white',
-        nullColor: 'white',
-        showInLegend: false,
-        enableMouseTracking: false
     }]
 });
 }
