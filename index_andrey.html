@@ -6,24 +6,26 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
 	<title>DSC106 - Visualization Final</title>
-	<link href="https://fonts.googleapis.com/css?family=Montserrat|Paytone+One&display=swap" rel="stylesheet" />
 	<link href="./styles/dashboard.css" rel="stylesheet" />
-	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/maps/highmaps.js"></script>
+	<script src="https://code.highcharts.com/maps/modules/exporting.js"></script>
 	<script src="https://code.highcharts.com/mapdata/countries/us/us-all.js"></script>
-	<script src="./scripts/main_andrey.js"></script>
+	<script src="./Scripts/main.js"></script>
 </head>
 
-<body id = 'bgrad'>
 
-	<h1>Drug Overdose Deaths in the United States</h1>
+<body id = 'background'>
+
+	<h1>DRUG OVERDOSE DEATHS 
+		<br>
+		IN THE UNITED STATES <br> <img src = './images/Opioid_receptor.gif'></img> </h1>
 	<p>Throughout the past two decades, the United States has seen a significant increase in drug overdoses. 
 	The National Center of Health Services has provided a dataset describing drug poisoning deaths at the U.S. and state level.
 	Below we depict a graph with the US Age-adjusted death rates in the U.S. from in 1999 to 2016	
 </p>
 
 	<section>
-		<section id = 'odLineChart' class="chart--container"></section>
+		<div id='death_rate_chart' class="chart--container"></div>
 	</section>
 
 	<p>As you can see the the number of overdoses have increased drastically; Almost exponentiall in the last couple years
@@ -37,10 +39,6 @@
 	</section>
 
 	<hr />
-	<p>Does this shit look good or what</p>
-	<section>
-		<div id='death_rate_chart' class="chart--container"></div>
-	</section>
 
 </body>
 
