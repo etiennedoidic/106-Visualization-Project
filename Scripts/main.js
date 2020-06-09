@@ -1,11 +1,56 @@
+async function loadJSON(path) {
+	let response = await fetch(path);
+	let dataset = await response.json(); // Now available in global scope
+	return dataset;
+}
+
 function plotChange(state) {
 }
 
 function plotPie(state) {
-	
+
 }
 
-
+function plotYearlyRates(rates) {
+	console.log(rates['year'])
+	console.log(rates['age_adjusted_rate'])
+	Highcharts.chart('death_rate_chart', {
+		chart: {type: 'line'},
+		legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            floating: true,
+            x: -60,
+            borderWidth: 1
+		
+		},
+		title: {
+			text: 'USA Per Capita Overdose Rate by Year'
+		},
+		subtitle: {
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-State-United-Stat/xbxb-epbu/data" target="_blank">NCHS Drug Poisoning Mortality</a>'
+		},	
+		xAxis: {
+			categories: rates['year'],
+			title: {
+				text: 'Year'
+			}
+		},
+		yAxis: {
+			title: {
+				text: 'Age-adjusted death rates (deaths per 100,000 U.S. standard population for 2000)'
+			}
+		},
+		series: [{
+			name: 'US Age-adjusted Rate',
+			data: rates['age_adjusted_rate']},
+		],
+		credits: {
+			enabled: false
+		 },
+	}); 
+}
 
 
 var mapdata = [
@@ -127,6 +172,10 @@ Highcharts.mapChart('myMap', {
 }
 
 function init() {
+	death_rate_year = loadJSON('./Data/line_chart_data.json');
+	death_rate_year.then(function (rates) {
+		plotYearlyRates(rates);
+	});
 	plotMap();
 }
 
