@@ -5,7 +5,7 @@ h3 { font-family: 'Lucida', monospace; font-size: 14px; font-style: normal; font
 p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; color: white;} 
 
 #background {
-    background-color: #33cccc; /* For browsers that do not support gradients */
+    background-color: #acf2f2; /* For browsers that do not support gradients #33cccc */
 }
 
 #myMap {

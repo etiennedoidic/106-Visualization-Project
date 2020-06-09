@@ -9,83 +9,56 @@ function displayOD(state) {
 }
 
 function plotChange(state) {
+	let death_rate_state = loadJSON('./Data/states_data.json');
+	let death_rate_US = loadJSON('./Data/line_chart_data.json');
+	console.log(death_rate_state)
+	console.log(death_rate_US)
+	Highcharts.chart('us_vs_state_rate_chart', {
+		chart: {type: 'line'},
+		legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            floating: true,
+            x: -60,
+            borderWidth: 1
+		
+		},
+		title: {
+			text: 'State vs US Per Capita Overdose Rate by Year'
+		},
+		subtitle: {
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-State-United-Stat/xbxb-epbu/data" target="_blank">NCHS Drug Poisoning Mortality</a>'
+		},	
+		xAxis: {
+			categories: death_rate_US['year'],
+			title: {
+				text: 'Year'
+			}
+		},
+		yAxis: {
+			title: {
+				text: 'Age-adjusted death rates (deaths per 100,000 U.S. standard population for 2000)'
+			}
+		},
+		series: [{
+			name: 'US Age-adjusted Rate',
+			data: death_rate_US['age_adjusted_rate']},
+			{
+				name: 'State Age-adjusted Rate',
+				data: death_rate_state[state]
+			}
+		],
+		credits: {
+			enabled: false
+		 },
+	}); 
 }
 
 function plotPie(state) {
-	let T401 = {
-		values: [],
-		text: "Heroin"
-	}
-	let T402 = {
-		values: [],
-		text: "Natural & semi-synthetic opioids"
-	}
-	let T403 = {
-		values: [],
-		text: "Methadone"
-	}
-	let T404 = {
-		values: [],
-		text: "Synthetic opioids, excl. methadone"
-	}
-	let T405 = {
-		values: [],
-		text: "Cocaine"
-	}
-	let T406 = {
-		values: [],
-		text: "Other Opiods"
-	}
-	let T436 = {
-		values: [],
-		text: "Psychostimulants"
-	} 
-	let drugDeaths = drugRatiosByState[state];
-	for (const data of drugDeaths) {
-		T401['values'].push(data['Heroin (T40.1)']);
-		T402['values'].push(data['Natural & semi-synthetic opioids (T40.2)']);
-		T403['values'].push(data['Methadone (T40.3)']);
-		T404['values'].push(data['Synthetic opioids, excl. methadone (T40.4)']);
-		T405['values'].push(data['Cocaine (T40.5)']);
-		var otheropiods = data['Opioids (T40.0-T40.4,T40.6)'] - (data['Heroin (T40.1)'] + data['Natural & semi-synthetic opioids (T40.2)'] + data['Methadone (T40.3)'] + data['Synthetic opioids, excl. methadone (T40.4)'])
-		T406['values'].push(otheropiods);
-		T436['values'].push(data['Psychostimulants with abuse potential (T43.6)'])
-	}
-
-	Highcharts.chart('totalSalesChart', {
-		chart: {
-			type: 'pie'
-		},
-		legend: {},
-		title: {
-			text: 'Total Sales'
-		},
-		plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
-        }
-    },
-		series: [{
-			name: 'Sales',
-			data: [{
-				y: parseInt(dingusValues.values),
-				name: "Dingus",
-			}, {
-				y: parseInt(widgetValues.values),
-				name: "Widget",
-			   }
-		]}]
-	});
 }
 
 function plotYearlyRates(rates) {
-	console.log(rates['year'])
-	console.log(rates['age_adjusted_rate'])
 	Highcharts.chart('death_rate_chart', {
 		chart: {type: 'line'},
 		legend: {
