@@ -9,10 +9,12 @@ function displayOD(state) {
 }
 
 function plotChange(state) {
-	let death_rate_state = loadJSON('./Data/states_data.json');
-	let death_rate_US = loadJSON('./Data/line_chart_data.json');
-	console.log(death_rate_state)
-	console.log(death_rate_US)
+	//let death_rate_US = loadJSON('./Data/line_chart_data.json');
+	let years = [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
+		2010, 2011, 2012, 2013, 2014, 2015, 2016];
+	//console.log(death_rate_state)
+	console.log(death_rate_year)
+	console.log(states_data)
 	Highcharts.chart('us_vs_state_rate_chart', {
 		chart: {type: 'line'},
 		legend: {
