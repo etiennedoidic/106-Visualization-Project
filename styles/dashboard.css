@@ -1,17 +1,16 @@
 
 
-h1 { font-family: 'Lucida Console', monospace; font-size: 24px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 26.4px; color: red; } 
+h1 { font-family: 'Lucida Console', monospace; font-size: 40px; font-style: normal; font-variant: normal; font-weight: 700;text-shadow: #FC0 1px 0 10px; line-height: 26.4px; color: whitesmoke; background-color: black;} 
 h3 { font-family: 'Lucida', monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
 p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; color: white;} 
 
 #bgrad {
-    background-color: darkblue; /* For browsers that do not support gradients */
-    background-image: linear-gradient(darkblue, black);}
+    background-color: #33cccc; /* For browsers that do not support gradients */
+}
 
 #myMap {
-    height: 500px; 
-    min-width: 310px; 
-    max-width: 800px; 
+    height: 600px; 
+    max-width: fit-content; 
     margin: 0 auto;
 }
 
