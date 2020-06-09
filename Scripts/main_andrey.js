@@ -1,237 +1,14 @@
-// Global constants
-const DEBUG = true;
-const DINGUS_PRICE = 14.25;
-const WIDGET_PRICE = 9.99;
-
-// Some little helpers
-const log = msg => (DEBUG ? console.log(msg) : '');
-const select = id => document.getElementById(id);
-
-
-function plotMap() {
-	var data = [
-		['us-ma', 0],
-		['us-wa', 1],
-		['us-ca', 2],
-		['us-or', 3],
-		['us-wi', 4],
-		['us-me', 5],
-		['us-mi', 6],
-		['us-nv', 7],
-		['us-nm', 8],
-		['us-co', 9],
-		['us-wy', 10],
-		['us-ks', 11],
-		['us-ne', 12],
-		['us-ok', 13],
-		['us-mo', 14],
-		['us-il', 15],
-		['us-in', 16],
-		['us-vt', 17],
-		['us-ar', 18],
-		['us-tx', 19],
-		['us-ri', 20],
-		['us-al', 21],
-		['us-ms', 22],
-		['us-nc', 23],
-		['us-va', 24],
-		['us-ia', 25],
-		['us-md', 26],
-		['us-de', 27],
-		['us-pa', 28],
-		['us-nj', 29],
-		['us-ny', 30],
-		['us-id', 31],
-		['us-sd', 32],
-		['us-ct', 33],
-		['us-nh', 34],
-		['us-ky', 35],
-		['us-oh', 36],
-		['us-tn', 37],
-		['us-wv', 38],
-		['us-dc', 39],
-		['us-la', 40],
-		['us-fl', 41],
-		['us-ga', 42],
-		['us-sc', 43],
-		['us-mn', 44],
-		['us-mt', 45],
-		['us-nd', 46],
-		['us-az', 47],
-		['us-ut', 48],
-		['us-hi', 49],
-		['us-ak', 50]
-	];
-	
-	// Create the chart
-	Highcharts.mapChart('container', {
-		chart: {
-			map: 'countries/us/us-all'
-		},
-	
-		title: {
-			text: 'Highmaps basic demo'
-		},
-	
-		subtitle: {
-			text: 'Source map: <a href="http://code.highcharts.com/mapdata/countries/us/us-all.js">United States of America</a>'
-		},
-	
-		mapNavigation: {
-			enabled: true,
-			buttonOptions: {
-				verticalAlign: 'bottom'
-			}
-		},
-	
-		colorAxis: {
-			min: 0
-		},
-	
-		series: [{
-			data: data,
-			name: 'Random data',
-			states: {
-				hover: {
-					color: '#BADA55'
-				}
-			},
-			dataLabels: {
-				enabled: true,
-				format: '{point.name}'
-			}
-		}, {
-			name: 'Separators',
-			type: 'mapline',
-			data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
-			color: 'silver',
-			nullColor: 'silver',
-			showInLegend: false,
-			enableMouseTracking: false
-		}]
-	});
-}
-function plotSales(sales) {
-	// Plot the world map
-
-	// Make sales data available globally
-	
-	plotMap();
-	data = sales;
-}
-
-function plotColumn(continent) {
-	let dingusValues = {
-		values: [],
-		text: "Dinguses"
-	}
-	let widgetValues = {
-		values: [],
-		text: "Widgets"
-	}
-	let sales = data[continent];
-	for (const datum of sales) {
-		let month = datum['Month'];
-		let dingus = datum['Dingus'];
-		let widget = datum['Widget'];
-		dingusValues['values'].push([month, dingus]);
-		widgetValues['values'].push([month, widget]);
-	}
-	Highcharts.chart('salesPerMonthChart', {
-			legend: {layout: 'vertical',
-			align: 'right'
-			},
-			title: {
-				text: 'Monthly Sales'
-			},
-			xAxis: {
-				categories: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-				label: {
-					text: 'Month'
-				}
-			},
-			yAxis: {
-				label: {
-					text: 'Number of units sold'
-				}
-			},
-			series: [{
-				name: 'Dingus',
-				data: dingusValues.values},
-				{
-				name: 'Widget',
-				data: widgetValues.values	
-				}
-			]
-		}); 
-}
-
-function plotPie(continent) {
-	let dingusValues = {
-		values: [],
-		text: "Dinguses"
-	}
-	let widgetValues = {
-		values: [],
-		text: "Widgets"
-	}
-	let sales = data[continent];
-	let dinguses = 0, widgets = 0;
-	for (const datum of sales) {
-		dinguses += datum['Dingus'];
-		widgets += datum['Widget'];
-	}
-	dingusValues['values'].push(dinguses);
-	widgetValues['values'].push(widgets);
-
-	Highcharts.chart('totalSalesChart', {
-		chart: {
-			type: 'pie'
-		},
-		legend: {},
-		title: {
-			text: 'Total Sales'
-		},
-		plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
-        }
-    },
-		series: [{
-			name: 'Sales',
-			data: [{
-				y: parseInt(dingusValues.values),
-				name: "Dingus",
-			}, {
-				y: parseInt(widgetValues.values),
-				name: "Widget",
-			   }
-		]}]
-	});
-}
-
-function updateScoreCards(continent) {
-	let sales = data[continent];
-	let dinguses = 0, widgets = 0;
-	for (const datum of sales) {
-		dinguses += datum['Dingus'];
-		widgets += datum['Widget'];
-	}
-	let revenue = DINGUS_PRICE * dinguses + WIDGET_PRICE * widgets;
-	select('dingusSold').innerHTML = dinguses;
-	select('widgetSold').innerHTML = widgets;
-	select('totalSales').innerHTML = revenue.toFixed(2);
-}
-
 async function loadJSON(path) {
 	let response = await fetch(path);
 	let dataset = await response.json(); // Now available in global scope
 	return dataset;
+}
+
+function plotChange(state) {
+}
+
+function plotPie(state) {
+
 }
 
 function plotYearlyRates(rates) {
@@ -275,11 +52,131 @@ function plotYearlyRates(rates) {
 	}); 
 }
 
+
+var mapdata = [
+		['us-ma', 32.8],
+		['us-wa', 14.8],
+		['us-ca', 12.8],
+		['us-or', 12.6],
+		['us-wi', 19.2],
+		['us-me', 27.9],
+		['us-mi', 26.6],
+		['us-nv', 21.2],
+		['us-nm', 26.7],
+		['us-co', 16.8],
+		['us-wy', 11.1],
+		['us-ks', 12.4],
+		['us-ne', 21.2],
+		['us-ok', 18.4],
+		['us-mo', 27.5],
+		['us-il', 21.3],
+		['us-in', 25.6],
+		['us-vt', 26.6],
+		['us-ar', 15.7],
+		['us-tx', 10.4],
+		['us-ri', 30.1 ],
+		['us-al', 16.6],
+		['us-ms', 10.8],
+		['us-nc', 22.4],
+		['us-va', 17.1],
+		['us-ia', 9.6],
+		['us-md', 37.2],
+		['us-de', 43.8],
+		['us-pa', 36.1],
+		['us-nj', 36.1],
+		['us-ny', 18.4],
+		['us-id', 14.6],
+		['us-sd', 6.9],
+		['us-ct', 30.7],
+		['us-nh', 35.8],
+		['us-ky', 30.9],
+		['us-oh', 35.9],
+		['us-tn', 27.5],
+		['us-wv', 51.5],
+		['us-dc', 'N/A'],
+		['us-la', 25.4],
+		['us-fl', 22.8],
+		['us-ga', 13.2],
+		['us-sc', 22.6],
+		['us-mn', 11.5],
+		['us-mt', 12.2],
+		['us-nd', 10.2],
+		['us-az', 23.8],
+		['us-ut', 21.2],
+		['us-hi', 14.3],
+		['us-ak', 14.6]
+	];
+	
+function plotMap() {
+	// Create the map
+Highcharts.mapChart('myMap', {
+	chart: {
+		map: 'countries/us/us-all'
+	},
+
+	title: {
+		text: '2018 Drug Overdose Deaths Per 100,000 by State'
+	},
+
+	subtitle: {
+		text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Provisional Drug Overdose Death Counts</a>'
+	},
+	mapNavigation: {
+        enabled: true,
+        buttonOptions: {
+            verticalAlign: 'bottom'
+        }
+    },
+
+    colorAxis: {
+		max: 60,
+		tickInterval: 5,
+		stops: [[0, '#F1EEF6'], [0.65, '#900037'], [1, '#500007']],
+	},
+	plotOptions: {
+		series: {
+			point: {
+				events: {
+					click: function () {
+						alert(this.name);
+						plotPie(this.name);
+						plotChange(this.name);
+					}
+				}
+			}
+		}
+	},
+
+    series: [{
+        data: mapdata,
+        name: 'Overdose Death Rate',
+        states: {
+            hover: {
+                color: '#a4edba5'
+            }
+		},
+        dataLabels: {
+            enabled: true,
+            format: '{point.name}'
+        }
+    }, {
+        name: 'Separators',
+        type: 'mapline',
+        data: Highcharts.geojson(Highcharts.maps['countries/us/us-all'], 'mapline'),
+        color: 'white',
+        nullColor: 'white',
+        showInLegend: false,
+        enableMouseTracking: false
+    }]
+});
+}
+
 function init() {
 	death_rate_year = loadJSON('./Data/line_chart_data.json');
 	death_rate_year.then(function (rates) {
 		plotYearlyRates(rates);
 	});
+	plotMap();
 }
 
 document.addEventListener('DOMContentLoaded', init, false);
