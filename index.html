@@ -13,16 +13,20 @@
 	<script src="./Scripts/main.js"></script>
 </head>
 
-
-<body id = 'background'>
-
-	<h1>DRUG OVERDOSE DEATHS 
-		<br>
-		IN THE UNITED STATES <br> <img src = './images/Opioid_receptor.gif'></img> </h1>
-	<p>Throughout the past two decades, the United States has seen a significant increase in drug overdoses. 
-	The National Center of Health Services has provided a dataset describing drug poisoning deaths at the U.S. and state level.
-	Below we depict a graph with the US Age-adjusted death rates in the U.S. from in 1999 to 2016	
-</p>
+<main>
+	<section id = 'top'>
+		<h1>DRUG OVERDOSE DEATHS 
+			<div class="col-xs-12 col-md-6 pull-right hidden-xs hidden-sm header-vid-space">
+				<img src = './images/Opioid_receptor.gif'></img>
+			</div>
+			IN THE UNITED STATES <br> 
+			 </h1>
+		<p>Throughout the past two decades, the United States has seen a significant increase in drug overdoses. 
+		The National Center of Health Services has provided a dataset describing drug poisoning deaths at the U.S. and state level.
+		Below we depict a graph with the US Age-adjusted death rates in the U.S. from in 1999 to 2016	
+		</p>
+	</section>
+	
 
 	<section>
 		<div id='death_rate_chart' class="chart--container"></div>
@@ -37,9 +41,13 @@
 	<section>
 		<div id="myMap"></div>
 	</section>
+	<section id="summaryCharts" class="chart-parent--container">
+		<section id="pieChart" class="chart--container"></section>
+		<section id="usvsstate" class="chart--container"></section>
+	</section>
+	
 
 	<hr />
-
-</body>
+</main>
 
 </html>
