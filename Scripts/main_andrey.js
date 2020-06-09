@@ -8,7 +8,72 @@ function plotChange(state) {
 }
 
 function plotPie(state) {
+	let dingusValues = {
+		values: [],
+		text: "Dinguses"
+	}
+	let widgetValues = {
+		values: [],
+		text: "Widgets"
+	}
+	let sales = data[continent];
+	let dinguses = 0, widgets = 0;
+	for (const datum of sales) {
+		dinguses += datum['Dingus'];
+		widgets += datum['Widget'];
+	}
+	dingusValues['values'].push(dinguses);
+    widgetValues['values'].push(widgets);
 
+    var salesChart = Highcharts.chart('totalSalesChart', {
+		chart: { type: 'pie'},
+
+		title: { text: 'Total Sales',
+				style: {"text-align": "center",
+						"font-size": "1.8vw"}},
+
+		colors: ['blue', 'red'],
+
+	legend: {
+	  layout: 'vertical',
+	  align: 'right',
+      verticalAlign: 'top',
+      floating: true,
+      x: -60,
+      borderWidth: 1
+	},
+	
+	plotOptions: {
+	  pie: {
+			allowPointSelect: true,
+            cursor: 'pointer',
+            startAngle: 90,
+			dataLabels: {
+			  enabled: true,
+			  format: '{point.percentage:.1f} %',
+			style: {
+			  fontSize: 20
+            },
+		  },
+	  }
+  },
+	series: [{
+	  type: 'pie',
+	  size: '100%',
+	  showInLegend: true,
+	  dataLabels: {
+		  distance: '-50%',
+		  enabled: true
+	  },
+	  data: [{
+		name: 'Dinguses',
+		y: dingusValues.values[0]
+	  }, {
+		name: 'Widgets',
+		y: widgetValues.values[0]
+	  }]
+	}]
+  });
 }
 
 function plotYearlyRates(rates) {
