@@ -4,11 +4,83 @@ async function loadJSON(path) {
 	return dataset;
 }
 
+function displayOD(state) {
+
+}
+
 function plotChange(state) {
 }
 
 function plotPie(state) {
+	let T401 = {
+		values: [],
+		text: "Heroin"
+	}
+	let T402 = {
+		values: [],
+		text: "Natural & semi-synthetic opioids"
+	}
+	let T403 = {
+		values: [],
+		text: "Methadone"
+	}
+	let T404 = {
+		values: [],
+		text: "Synthetic opioids, excl. methadone"
+	}
+	let T405 = {
+		values: [],
+		text: "Cocaine"
+	}
+	let T406 = {
+		values: [],
+		text: "Other Opiods"
+	}
+	let T436 = {
+		values: [],
+		text: "Psychostimulants"
+	} 
+	let drugDeaths = drugRatiosByState[state];
+	for (const data of drugDeaths) {
+		T401['values'].push(data['Heroin (T40.1)']);
+		T402['values'].push(data['Natural & semi-synthetic opioids (T40.2)']);
+		T403['values'].push(data['Methadone (T40.3)']);
+		T404['values'].push(data['Synthetic opioids, excl. methadone (T40.4)']);
+		T405['values'].push(data['Cocaine (T40.5)']);
+		var otheropiods = data['Opioids (T40.0-T40.4,T40.6)'] - (data['Heroin (T40.1)'] + data['Natural & semi-synthetic opioids (T40.2)'] + data['Methadone (T40.3)'] + data['Synthetic opioids, excl. methadone (T40.4)'])
+		T406['values'].push(otheropiods);
+		T436['values'].push(data['Psychostimulants with abuse potential (T43.6)'])
+	}
 
+	Highcharts.chart('totalSalesChart', {
+		chart: {
+			type: 'pie'
+		},
+		legend: {},
+		title: {
+			text: 'Total Sales'
+		},
+		plotOptions: {
+        pie: {
+            allowPointSelect: true,
+            cursor: 'pointer',
+            dataLabels: {
+                enabled: true,
+                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
+            }
+        }
+    },
+		series: [{
+			name: 'Sales',
+			data: [{
+				y: parseInt(dingusValues.values),
+				name: "Dingus",
+			}, {
+				y: parseInt(widgetValues.values),
+				name: "Widget",
+			   }
+		]}]
+	});
 }
 
 function plotYearlyRates(rates) {
@@ -108,61 +180,64 @@ var mapdata = [
 	];
 	
 function plotMap() {
+	//Load pieChart data 
+	let drugRatiosByState = loadJSON('./Data/pieChartData.json');
 	// Create the map
 	
-Highcharts.mapChart('myMap', {
-	chart: {
-		map: 'countries/us/us-all',
-		backgroundColor: '#33cccc'
-	},
+	Highcharts.mapChart('myMap', {
+		chart: {
+			map: 'countries/us/us-all',
+			backgroundColor: '#33cccc'
+		},
 
-	title: {
-		text: '2018 Drug Overdose Deaths Per 100,000 by State'
-	},
+		title: {
+			text: '2018 Drug Overdose Deaths Per 100,000 by State'
+		},
 
-	subtitle: {
-		text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Provisional Drug Overdose Death Counts</a>'
-	},
-	mapNavigation: {
-        enabled: true,
-        buttonOptions: {
-            verticalAlign: 'bottom'
-        }
-    },
+		subtitle: {
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Provisional Drug Overdose Death Counts</a>'
+		},
+		mapNavigation: {
+			enabled: true,
+			buttonOptions: {
+				verticalAlign: 'bottom'
+			}
+		},
 
-    colorAxis: {
-		max: 60,
-		tickInterval: 5,
-		stops: [[0, '#F1EEF6'], [0.65, '#900037'], [1, '#500007']],
-	},
-	plotOptions: {
-		series: {
-			point: {
-				events: {
-					click: function () {
-						alert(this.name);
-						plotPie(this.name);
-						plotChange(this.name);
+		colorAxis: {
+			max: 60,
+			tickInterval: 5,
+			stops: [[0, '#c1f7dd'], [0.20, '#fcd600'], [.50, '#fc0000']],
+		},
+		plotOptions: {
+			series: {
+				point: {
+					events: {
+						click: function () {
+							alert(this.name);
+							displayOD(this.name);
+							plotPie(this.name);
+							plotChange(this.name);
+						}
 					}
 				}
 			}
-		}
-	},
-
-    series: [{
-        data: mapdata,
-        name: 'Overdose Death Rate',
-        states: {
-            hover: {
-                color: '#a4edba5'
-            }
 		},
-        dataLabels: {
-            enabled: true,
-            format: '{point.name}'
-        }
-    }]
-});
+
+		series: [{
+			data: mapdata,
+			name: 'Overdose Death Rate',
+			states: {
+				hover: {
+					color: '#ffffff'
+				}
+			},
+			dataLabels: {
+				enabled: true,
+				format: '{point.name}'
+			}
+		}]
+	});
 }
 
 function init() {

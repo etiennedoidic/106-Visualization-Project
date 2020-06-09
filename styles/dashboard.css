@@ -4,7 +4,7 @@ h1 { font-family: 'Lucida Console', monospace; font-size: 40px; font-style: norm
 h3 { font-family: 'Lucida', monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
 p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; color: white;} 
 
-#bgrad {
+#background {
     background-color: #33cccc; /* For browsers that do not support gradients */
 }
 
