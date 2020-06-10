@@ -1,3 +1,7 @@
+//Global Variables
+let death_rate_US = [];
+let states_rate = [];
+
 async function loadJSON(path) {
 	let response = await fetch(path);
 	let dataset = await response.json(); // Now available in global scope
@@ -9,12 +13,8 @@ function displayOD(state) {
 }
 
 function plotChange(state) {
-	//let death_rate_US = loadJSON('./Data/line_chart_data.json');
-	let years = [1999, 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009,
-		2010, 2011, 2012, 2013, 2014, 2015, 2016];
-	//console.log(death_rate_state)
-	console.log(death_rate_year)
-	console.log(states_data)
+	console.log(death_rate_US)
+	console.log(states_rate)
 	Highcharts.chart('us_vs_state_rate_chart', {
 		chart: {type: 'line'},
 		legend: {
@@ -48,7 +48,7 @@ function plotChange(state) {
 			data: death_rate_US['age_adjusted_rate']},
 			{
 				name: 'State Age-adjusted Rate',
-				data: death_rate_state[state]
+				data: states_rate[state]
 			}
 		],
 		credits: {
@@ -217,9 +217,15 @@ function plotMap() {
 
 function init() {
 	death_rate_year = loadJSON('./Data/line_chart_data.json');
+	death_rate_state = loadJSON('./Data/states_data.json');
 	death_rate_year.then(function (rates) {
+		death_rate_US = rates;
 		plotYearlyRates(rates);
 	});
+	death_rate_state.then(function (rates_states) {
+		states_rate = rates_states;
+	});
+
 	plotMap();
 }
 
