@@ -404,13 +404,16 @@ function plotCol() {
 		xAxis: {
 			categories: ['0-14', '15-24', '25-34', '35-44', '45-54', '55-64', '65-74', '74+'],
 			title: {
-				text: null
+				text: 'Age Range'
 			}
 		},
 		yAxis: {
 			min: 0,
 			labels: {
 				overflow: 'justify'
+			},
+			title: {
+				text: 'Percent of Overdose deaths'
 			}
 		},
 		plotOptions: {
