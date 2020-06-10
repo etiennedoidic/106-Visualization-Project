@@ -1,6 +1,6 @@
 
 
-h1 { font-family: 'Helvetica Neue', monospace; font-size: 90px; font-style: bold; font-variant: bold; font-weight: 700;text-shadow: black; line-height: 26.4px; color: whitesmoke; position: relative; text-align: center;} 
+h1 { font-family: 'Helvetica Neue', monospace; font-size: 50px; font-style: bold; font-variant: bold; font-weight: 700;text-shadow: #8d8d83 1px 0 10px; line-height: 26.4px; color: whitesmoke; position: relative; text-align: center;} 
 h3 { font-family: 'Lucida', monospace; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
 p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px; font-style: bold; font-variant: normal; font-weight: 400; line-height: 20px; color: black;} 
 
@@ -24,19 +24,38 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
 
 #centeredtitle {
     position: absolute;
-    top: 30%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 #centeredtitle2 {
     position: absolute;
-    top: 50%;
+    top: 30%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 #centeredtitle3 {
     position: absolute;
-    top: 70%;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#subtitle {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#subtitle2 {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+#subtitle3 {
+    position: absolute;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
