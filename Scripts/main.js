@@ -382,6 +382,57 @@ function plotCol() {
 			data: [25.2]
 		}]
 	});
+	Highcharts.chart('column2', {
+		chart: {
+			type: 'area'
+		},
+		title: {
+			text: 'Percent of Overdose Deaths Among All Deaths'
+		},
+		subtitle: {
+				text: 'Source: <a href="https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-State-United-Stat/xbxb-epbu/data" target="_blank">2016 NCHS Drug Poisoning Mortality</a>'
+		},
+		xAxis: {
+			categories: ['0-14', '15-24', '25-34', '35-44', '45-54', '55-64', '65-74', '74+'],
+			title: {
+				text: null
+			}
+		},
+		yAxis: {
+			min: 0,
+			labels: {
+				overflow: 'justify'
+			}
+		},
+		plotOptions: {
+			bar: {
+				dataLabels: {
+					enabled: true
+				}
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'top',
+			x: -40,
+			y: 80,
+			floating: true,
+			borderWidth: 1,
+		},
+		credits: {
+			enabled: false
+		},
+		series: [{
+			name: 'Male',
+			data: [0.00022, 0.01746, 0.04888, 0.04693, 0.04252, 0.03223, 0.00998, 0.00392],
+			color: '#0000ed'
+		}, {
+			name: 'Female',
+			data: [0.00025, 0.00696, 0.01992, 0.02326, 0.02673, 0.01950, 0.00654, 0.00337],
+			color: '#cf0000'
+		}]
+	});
 }
 
 function init() {
