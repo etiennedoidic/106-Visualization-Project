@@ -2,25 +2,20 @@
 
 h1 { font-family: 'Helvetica Neue', monospace; font-size: 40px; font-style: bold; font-variant: bold; font-weight: 700;text-shadow: #FC0 1px 0 10px; line-height: 26.4px; color: whitesmoke; background-color: black;} 
 h3 { font-family: 'Lucida', monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
-p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 400; line-height: 20px; color: white;} 
+p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: bold; font-variant: normal; font-weight: 400; line-height: 20px; color: black;} 
 
-#background {
-    background-color: #acf2f2; /* For browsers that do not support gradients #33cccc */
-}
 
 #myMap {
-    height: 600px; 
+    height: 400px; 
     max-width: fit-content; 
     margin: 0 auto;
 }
 
 .chart-parent--container {
-    background-color: #acf2f2;
     display: flex;
 }
 
 .chart--container {
-    background-color: #acf2f2;
     height: 100%;
     width: 100%;
     min-height: 400px;

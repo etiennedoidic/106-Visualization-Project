@@ -72,25 +72,15 @@ function displayOD(state) {
 }
 
 function plotChange(state) {
-<<<<<<< HEAD
-	console.log(death_rate_US)
-	console.log(states_rate)
-	Highcharts.chart('usvsstate', {
-=======
-	Highcharts.chart('us_vs_state_rate_chart', {
->>>>>>> 3d5c2f0c1ee617f4e9557343c8b9aa6b1bba2d2d
+	Highcharts.chart('usvsstatechart', {
 		chart: {type: 'line'},
 		legend: {
             layout: 'vertical',
             align: 'right',
             verticalAlign: 'top',
             floating: true,
-<<<<<<< HEAD
-            x: -60,
-=======
 			x: -20,
 			y: 20,
->>>>>>> 3d5c2f0c1ee617f4e9557343c8b9aa6b1bba2d2d
             borderWidth: 1
 		
 		},
@@ -163,7 +153,6 @@ function plotPie(state) {
 
 	Highcharts.chart('pieChart', {
 		chart: {
-			plotBackgroundColor: '#acf2f2',
 			plotShadow: false,
 			type: 'pie'
 		},
@@ -205,7 +194,6 @@ function plotYearlyRates(rates) {
             borderWidth: 1
 		
 		},
-		backgroundColor: '#acf2f2',
 		title: {
 			text: 'USA Per Capita Overdose Rate by Year'
 		},
@@ -295,7 +283,6 @@ function plotMap() {
 	Highcharts.mapChart('myMap', {
 		chart: {
 			map: 'countries/us/us-all',
-			backgroundColor: '#acf2f2'
 		},
 
 		title: {
