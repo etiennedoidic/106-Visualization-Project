@@ -333,6 +333,56 @@ function plotMap() {
 		}]
 	});
 }
+function plotCol() {
+	Highcharts.chart('column1', {
+		chart: {
+			type: 'bar'
+		},
+		title: {
+			text: 'Overdose Death Rates by Race'
+		},
+		subtitle: {
+				text: 'Source: <a href="https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-State-United-Stat/xbxb-epbu/data" target="_blank">NCHS Drug Poisoning Mortality</a>'
+		},
+		yAxis: {
+			min: 0,
+			title: {
+				text: 'Death Rate',
+				align: 'high'
+			},
+		},
+		plotOptions: {
+			bar: {
+				dataLabels: {
+					enabled: true
+				}
+			}
+		},
+		legend: {
+			layout: 'vertical',
+			align: 'right',
+			verticalAlign: 'top',
+			x: -40,
+			y: 80,
+			floating: true,
+			borderWidth: 1,
+			shadow: true
+		},
+		credits: {
+			enabled: false
+		},
+		series: [{
+			name: 'Hispanic',
+			data: [9.4]
+		}, {
+			name: 'Black',
+			data: [17.07]
+		}, {
+			name: 'White',
+			data: [25.2]
+		}]
+	});
+}
 
 function init() {
 	death_rate_year = loadJSON('./Data/line_chart_data.json');
@@ -349,6 +399,7 @@ function init() {
 		drugRatiosByState = makeup_of_drugs;
 	});
 	plotMap();
+	plotCol();
 }
 
 document.addEventListener('DOMContentLoaded', init, false);

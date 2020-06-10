@@ -1,8 +1,8 @@
 
 
 h1 { font-family: 'Helvetica Neue', monospace; font-size: 60px; font-style: bold; font-variant: bold; font-weight: 700;text-shadow: #FC0 1px 0 10px; line-height: 26.4px; color: whitesmoke; background-color: black;} 
-h3 { font-family: 'Lucida', monospace; font-size: 14px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
-p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px; font-style: bold; font-variant: normal; font-weight: 400; line-height: 20px; color: black;} 
+h3 { font-family: 'Lucida', monospace; font-size: 20px; font-style: normal; font-variant: normal; font-weight: 700; line-height: 15.4px; color: white;} 
+p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px; font-style: bold; font-variant: normal; font-weight: 400; line-height: 20px; color: black;} 
 
 #h1container {font-family: 'Helvetica Neue', monospace; font-size: 60px; font-style: bold; font-variant: bold; font-weight: 700;text-shadow: #FC0 1px 0 10px; line-height: 26.4px; color: whitesmoke; background-color: black;
         position: relative;
@@ -13,7 +13,7 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px
 #centered {
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 30%;
     transform: translate(-50%, -50%);
 }
 
@@ -45,4 +45,9 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 14px
       font-size: 1.2em;
       /* border-style: double; */
       outline: 2px solid black;
+  }
+.chart--container2 {
+    height: 50%;
+    width: 50%;
+    min-height: 300px;
 }
