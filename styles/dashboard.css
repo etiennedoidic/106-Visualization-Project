@@ -18,7 +18,7 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
 }
 
 #myMap {
-    height: 400px; 
+    height: 450px; 
     max-width: fit-content; 
     margin: 0 auto;
 }
