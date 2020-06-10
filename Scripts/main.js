@@ -88,7 +88,7 @@ function plotChange(state) {
 		
 		},
 		title: {
-			text: 'State vs US Per Capita Overdose Rate by Year'
+			text: (state + ' vs US Per Capita Overdose Rate by Year')
 		},
 		subtitle: {
 			text: 'Source: <a href="https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-State-United-Stat/xbxb-epbu/data" target="_blank">NCHS Drug Poisoning Mortality</a>'
@@ -164,7 +164,7 @@ function plotPie(state) {
 		tooltip: { enabled: false },
 		legend: {},
 		title: {
-			text: 'Cause of Overdose Death'
+			text: ('Cause of Overdose Death in ' + state)
 		},
 		subtitle:{
 			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/" target="_blank">2018 CDC VRSS Drug Overdose Data</a>'
