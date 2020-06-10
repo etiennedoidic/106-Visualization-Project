@@ -40,14 +40,30 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
     width: 20%;
   }
 
-  p {
+  .general {
       text-align: center;
       font-size: 1.2em;
       /* border-style: double; */
   }
+  .biggerText {
+    text-align: center;
+    font-size: 3em;
+    margin-top: 1em;
+    margin-bottom: 0.2em;
+  }
+
 
 .chart--container2 {
     height: 70%;
     width: 80%;
     min-height: 300px;
 }
+.preventionPoints {
+    margin-left: 6em;
+    font-size: 1.2em;
+}
+.smallerText {
+    text-align: center;
+    font-size: 1em;
+  }
+
