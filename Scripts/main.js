@@ -73,7 +73,10 @@ function displayOD(state) {
 
 function plotChange(state) {
 	Highcharts.chart('usvsstatechart', {
-		chart: {type: 'line'},
+		chart: {
+			type: 'line',
+			backgroundColor: '#f5fdff',
+		},
 		legend: {
             layout: 'vertical',
             align: 'right',
@@ -155,7 +158,8 @@ function plotPie(state) {
 	Highcharts.chart('pieChart', {
 		chart: {
 			plotShadow: false,
-			type: 'pie'
+			type: 'pie',
+			backgroundColor: '#f5fdff',
 		},
 		tooltip: { enabled: false },
 		legend: {},
@@ -185,7 +189,10 @@ function plotPie(state) {
 
 function plotYearlyRates(rates) {
 	Highcharts.chart('death_rate_chart', {
-		chart: {type: 'line'},
+		chart: {
+			type: 'line',
+			backgroundColor: '#f5fdff',
+		},
 		legend: {
             layout: 'vertical',
             align: 'right',
@@ -284,8 +291,8 @@ function plotMap() {
 	Highcharts.mapChart('myMap', {
 		chart: {
 			map: 'countries/us/us-all',
+			backgroundColor: '#f5fdff',
 		},
-
 		title: {
 			text: '2018 Drug Overdose Deaths Per 100,000 by State'
 		},
@@ -336,7 +343,8 @@ function plotMap() {
 function plotCol() {
 	Highcharts.chart('column1', {
 		chart: {
-			type: 'bar'
+			type: 'bar',
+			backgroundColor: '#f5fdff',
 		},
 		title: {
 			text: 'Overdose Death Rates by Race'
@@ -384,7 +392,8 @@ function plotCol() {
 	});
 	Highcharts.chart('column2', {
 		chart: {
-			type: 'area'
+			type: 'area',
+			backgroundColor: '#f5fdff',
 		},
 		title: {
 			text: 'Percent of Overdose Deaths Among All Deaths'
