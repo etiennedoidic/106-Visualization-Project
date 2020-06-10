@@ -13,36 +13,46 @@
 	<script src="./Scripts/main_andrey.js"></script>
 </head>
 
-
-<body id = 'background'>
-
-	<h1>DRUG OVERDOSE DEATHS 
-		<br>
-		IN THE UNITED STATES <br> <img src = './images/Opioid_receptor.gif'></img> </h1>
-	<p>Throughout the past two decades, the United States has seen a significant increase in drug overdoses. 
-	The National Center of Health Services has provided a dataset describing drug poisoning deaths at the U.S. and state level.
-	Below we depict a graph with the US Age-adjusted death rates in the U.S. from in 1999 to 2016	
-</p>
-
-	<section>
-		<div id='death_rate_chart' class="chart--container"></div>
+<main>
+	<section id = 'top'>
+		<h1>
+		
+			<img class="center" src = './images/Opioid_receptor.gif'></img><br>
+			DRUG OVERDOSE DEATHS IN THE UNITED STATES <br>
+			____
+		
+			 </h1>
 	</section>
-
-	<p>As you can see the the number of overdoses have increased drastically; Almost exponentiall in the last couple years
-	In our exploration of the data we have found that certain states have increased in the amount of drug overdoses per capita while others have either 
-	maintained or, fortunately, decreased in drug overdoses per capita. 
-	Let's take a closer lose at individual states in the U.S. 
-	Click on a state to see its drug overdose statistics.
-	</p>
-	<section>
-		<div id="myMap"></div>
-	</section>
-	<section>
-		<div id='us_vs_state_rate_chart' class="chart--container"></section>
-	</section>
-
-	<hr />
-
-</body>
+	<body>
+		<p>Throughout the past two decades, the United States has seen a significant increase in drug overdoses. 
+			The National Center of Health Services has provided a dataset describing drug poisoning deaths at the U.S. and state level.
+			Below we depict a graph with the US Age-adjusted death rates in the U.S. from in 1999 to 2016	
+		</p>
+	
+		<section>
+			<div id='death_rate_chart' class="chart--container"></div>
+		</section>
+	
+		<p>As you can see the the number of overdoses have increased drastically; Almost exponentiall in the last couple years
+		In our exploration of the data we have found that certain states have increased in the amount of drug overdoses per capita while others have either 
+		maintained or, fortunately, decreased in drug overdoses per capita. 
+		Let's take a closer lose at individual states in the U.S. 
+		Click on a state to see its drug overdose statistics.
+		</p>
+		<section>
+			<div id="myMap"></div>
+		</section>
+		<section id="summaryCharts" class="chart-parent--container">
+			<section id="pieChart" class="chart--container"></section>
+			<section id= 'usvsstatechart' class="chart--container"></section>
+		</section>
+		<div id = 'h1container'>
+			<img src = './images/demographics.jpg' width = 100%>
+			<div id = 'centered'>DEMOGRAPHICS</div>
+		</div>
+		
+	</body>
+	
+</main>
 
 </html>

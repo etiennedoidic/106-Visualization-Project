@@ -33,6 +33,19 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
     min-height: 400px;
 }
 
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 20%;
+  }
+
+  p {
+      text-align: center;
+      font-size: 1.2em;
+      /* border-style: double; */
+      outline: 2px solid black;
+  }
 .chart--container2 {
     height: 50%;
     width: 50%;
