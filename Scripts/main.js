@@ -70,7 +70,50 @@ function displayOD(state) {
 }
 
 function plotChange(state) {
+	console.log(death_rate_US)
+	console.log(states_rate)
+	Highcharts.chart('usvsstate', {
+		chart: {type: 'line'},
+		legend: {
+            layout: 'vertical',
+            align: 'right',
+            verticalAlign: 'top',
+            floating: true,
+            x: -60,
+            borderWidth: 1
+		
+		},
+		title: {
+			text: 'State vs US Per Capita Overdose Rate by Year'
+		},
+		subtitle: {
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/NCHS-Drug-Poisoning-Mortality-by-State-United-Stat/xbxb-epbu/data" target="_blank">NCHS Drug Poisoning Mortality</a>'
+		},	
+		xAxis: {
+			categories: death_rate_US['year'],
+			title: {
+				text: 'Year'
+			}
+		},
+		yAxis: {
+			title: {
+				text: 'Age-adjusted death rates (deaths per 100,000 U.S. standard population for 2000)'
+			}
+		},
+		series: [{
+			name: 'US Age-adjusted Rate',
+			data: death_rate_US['age_adjusted_rate']},
+			{
+				name: 'State Age-adjusted Rate',
+				data: states_rate[state]
+			}
+		],
+		credits: {
+			enabled: false
+		 },
+	}); 
 }
+
 
 function plotPie(state) {
 	//Get state name
@@ -153,6 +196,7 @@ function plotYearlyRates(rates) {
             borderWidth: 1
 		
 		},
+		backgroundColor: '#acf2f2',
 		title: {
 			text: 'USA Per Capita Overdose Rate by Year'
 		},
@@ -172,6 +216,7 @@ function plotYearlyRates(rates) {
 		},
 		series: [{
 			name: 'US Age-adjusted Rate',
+			color: '#f70000',
 			data: rates['age_adjusted_rate']},
 		],
 		credits: {
@@ -269,6 +314,7 @@ function plotMap() {
 					events: {
 						click: function () {
 							plotPie(this.name);
+							plotChange(this.name);
 						}
 					}
 				}
