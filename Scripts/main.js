@@ -103,7 +103,8 @@ function plotChange(state) {
 		},
 		series: [{
 			name: 'US Age-adjusted Rate',
-			data: death_rate_US['age_adjusted_rate']},
+			data: death_rate_US['age_adjusted_rate'],
+			color: '#f70000'},
 			{
 				name: 'State Age-adjusted Rate',
 				data: states_rate[state]
@@ -162,7 +163,7 @@ function plotPie(state) {
 			text: 'Cause of Overdose Death'
 		},
 		subtitle:{
-			text: '<a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/" target="_blank">2018 CDC VRSS Drug Overdose Data</a>'
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/" target="_blank">2018 CDC VRSS Drug Overdose Data</a>'
 		},
 		plotOptions: {
         pie: {
@@ -290,7 +291,7 @@ function plotMap() {
 		},
 
 		subtitle: {
-			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Provisional Drug Overdose Death Counts</a>'
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Drug Overdose Data</a>'
 		},
 		mapNavigation: {
 			enabled: true,
@@ -302,7 +303,7 @@ function plotMap() {
 		colorAxis: {
 			max: 60,
 			tickInterval: 5,
-			stops: [[0, '#c1f7dd'], [0.20, '#fcd600'], [.50, '#fc0000']],
+			stops: [[0, '#c1f7dd'], [0.25, '#fcd600'], [.60, '#fc0000'], [1, '#000000']],
 		},
 		plotOptions: {
 			series: {
