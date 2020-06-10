@@ -100,7 +100,7 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
       text-align:center/left;
       font-size: 1.2em;
       line-height: 2;
-      /* border-style: double; */
+      text-indent: 50px;
   }
   .biggerText {
     text-align: center;
