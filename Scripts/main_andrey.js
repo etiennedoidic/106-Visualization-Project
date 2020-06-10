@@ -13,8 +13,6 @@ function displayOD(state) {
 }
 
 function plotChange(state) {
-	console.log(death_rate_US)
-	console.log(states_rate)
 	Highcharts.chart('us_vs_state_rate_chart', {
 		chart: {type: 'line'},
 		legend: {
