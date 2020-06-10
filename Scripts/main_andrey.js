@@ -1,7 +1,6 @@
 //Global Variables
 let death_rate_US = [];
 let states_rate = [];
-let drugRatiosByState = [];
 
 async function loadJSON(path) {
 	let response = await fetch(path);
@@ -9,78 +8,19 @@ async function loadJSON(path) {
 	return dataset;
 }
 
-stateAbbrevDic = us_state_abbrev = {
-    'Alabama': 'AL',
-    'Alaska': 'AK',
-    'American Samoa': 'AS',
-    'Arizona': 'AZ',
-    'Arkansas': 'AR',
-    'California': 'CA',
-    'Colorado': 'CO',
-    'Connecticut': 'CT',
-    'Delaware': 'DE',
-    'District of Columbia': 'DC',
-    'Florida': 'FL',
-    'Georgia': 'GA',
-    'Guam': 'GU',
-    'Hawaii': 'HI',
-    'Idaho': 'ID',
-    'Illinois': 'IL',
-    'Indiana': 'IN',
-    'Iowa': 'IA',
-    'Kansas': 'KS',
-    'Kentucky': 'KY',
-    'Louisiana': 'LA',
-    'Maine': 'ME',
-    'Maryland': 'MD',
-    'Massachusetts': 'MA',
-    'Michigan': 'MI',
-    'Minnesota': 'MN',
-    'Mississippi': 'MS',
-    'Missouri': 'MO',
-    'Montana': 'MT',
-    'Nebraska': 'NE',
-    'Nevada': 'NV',
-    'New Hampshire': 'NH',
-    'New Jersey': 'NJ',
-    'New Mexico': 'NM',
-    'New York': 'NY',
-    'North Carolina': 'NC',
-    'North Dakota': 'ND',
-    'Northern Mariana Islands':'MP',
-    'Ohio': 'OH',
-    'Oklahoma': 'OK',
-    'Oregon': 'OR',
-    'Pennsylvania': 'PA',
-    'Puerto Rico': 'PR',
-    'Rhode Island': 'RI',
-    'South Carolina': 'SC',
-    'South Dakota': 'SD',
-    'Tennessee': 'TN',
-    'Texas': 'TX',
-    'Utah': 'UT',
-    'Vermont': 'VT',
-    'Virgin Islands': 'VI',
-    'Virginia': 'VA',
-    'Washington': 'WA',
-    'West Virginia': 'WV',
-    'Wisconsin': 'WI',
-    'Wyoming': 'WY'
-}
 function displayOD(state) {
 
 }
 
 function plotChange(state) {
-	Highcharts.chart('usvsstatechart', {
+	Highcharts.chart('us_vs_state_rate_chart', {
 		chart: {type: 'line'},
 		legend: {
             layout: 'vertical',
             align: 'right',
             verticalAlign: 'top',
             floating: true,
-			x: -20,
-			y: 20,
+            x: -60,
             borderWidth: 1
 		
 		},
@@ -103,8 +43,7 @@ function plotChange(state) {
 		},
 		series: [{
 			name: 'US Age-adjusted Rate',
-			data: death_rate_US['age_adjusted_rate'],
-			color: '#f70000'},
+			data: death_rate_US['age_adjusted_rate']},
 			{
 				name: 'State Age-adjusted Rate',
 				data: states_rate[state]
@@ -116,71 +55,7 @@ function plotChange(state) {
 	}); 
 }
 
-
 function plotPie(state) {
-	//Get state name
-	name = stateAbbrevDic[state];
-	//Select state
-	let drugDeaths = drugRatiosByState[name];
-	let T401 = {
-		y: drugDeaths['Heroin (T40.1)'],
-		name: "Heroin"
-		
-	}
-	let T402 = {
-		y: drugDeaths['Natural & semi-synthetic opioids (T40.2)'],
-		name: "Natural & semi-synthetic opioids"
-	}
-	let T403 = {
-		y: drugDeaths['Methadone (T40.3)'],
-		name: "Methadone"
-	}
-	let T404 = {
-		y: drugDeaths['Synthetic opioids, excl. methadone (T40.4)'],
-		name: "Synthetic opioids, excl. methadone"
-	}
-	let T405 = {
-		y: drugDeaths['Cocaine (T40.5)'],
-		name: "Cocaine"
-	}
-	let T406 = {
-		y: (drugDeaths['Opioids (T40.0-T40.4,T40.6)'] - (drugDeaths['Heroin (T40.1)'] + drugDeaths['Natural & semi-synthetic opioids (T40.2)'] + drugDeaths['Methadone (T40.3)'] + drugDeaths['Synthetic opioids, excl. methadone (T40.4)'])),
-		name: "Other Opiods"
-	}
-	let T436 = {
-		y: drugDeaths['Psychostimulants with abuse potential (T43.6)'],
-		name: "Psychostimulants"
-	} 
-
-	Highcharts.chart('pieChart', {
-		chart: {
-			plotShadow: false,
-			type: 'pie'
-		},
-		tooltip: { enabled: false },
-		legend: {},
-		title: {
-			text: 'Cause of Overdose Death'
-		},
-		subtitle:{
-			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/" target="_blank">2018 CDC VRSS Drug Overdose Data</a>'
-		},
-		plotOptions: {
-        pie: {
-            allowPointSelect: true,
-            cursor: 'pointer',
-            dataLabels: {
-                enabled: true,
-                format: '<b>{point.name}</b>: {point.percentage:.1f} %'
-            }
-        }
-    },
-		series: [{
-			type: 'pie',
-			name: 'Cause of Overdose Death',
-			data: [T401, T402, T403, T404, T405, T436]
-		}]
-	});
 }
 
 function plotYearlyRates(rates) {
@@ -214,7 +89,6 @@ function plotYearlyRates(rates) {
 		},
 		series: [{
 			name: 'US Age-adjusted Rate',
-			color: '#f70000',
 			data: rates['age_adjusted_rate']},
 		],
 		credits: {
@@ -279,11 +153,14 @@ var mapdata = [
 	];
 	
 function plotMap() {
+	//Load pieChart data 
+	let drugRatiosByState = loadJSON('./Data/pieChartData.json');
 	// Create the map
 	
 	Highcharts.mapChart('myMap', {
 		chart: {
 			map: 'countries/us/us-all',
+			backgroundColor: '#33cccc'
 		},
 
 		title: {
@@ -291,7 +168,7 @@ function plotMap() {
 		},
 
 		subtitle: {
-			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Drug Overdose Data</a>'
+			text: 'Source: <a href="https://data.cdc.gov/NCHS/VSRR-Provisional-Drug-Overdose-Death-Counts/xkb8-kh2a/data#expand" target="_blank">CDC VSRR Provisional Drug Overdose Death Counts</a>'
 		},
 		mapNavigation: {
 			enabled: true,
@@ -303,13 +180,15 @@ function plotMap() {
 		colorAxis: {
 			max: 60,
 			tickInterval: 5,
-			stops: [[0, '#c1f7dd'], [0.25, '#fcd600'], [.60, '#fc0000'], [1, '#000000']],
+			stops: [[0, '#c1f7dd'], [0.20, '#fcd600'], [.50, '#fc0000']],
 		},
 		plotOptions: {
 			series: {
 				point: {
 					events: {
 						click: function () {
+							alert(this.name);
+							displayOD(this.name);
 							plotPie(this.name);
 							plotChange(this.name);
 						}
@@ -337,7 +216,6 @@ function plotMap() {
 function init() {
 	death_rate_year = loadJSON('./Data/line_chart_data.json');
 	death_rate_state = loadJSON('./Data/states_data.json');
-	pie_drug_makeup = loadJSON('./Data/pieChartData.json');
 	death_rate_year.then(function (rates) {
 		death_rate_US = rates;
 		plotYearlyRates(rates);
@@ -345,10 +223,9 @@ function init() {
 	death_rate_state.then(function (rates_states) {
 		states_rate = rates_states;
 	});
-	pie_drug_makeup.then(function (makeup_of_drugs) {
-		drugRatiosByState = makeup_of_drugs;
-	});
+
 	plotMap();
 }
 
 document.addEventListener('DOMContentLoaded', init, false);
+

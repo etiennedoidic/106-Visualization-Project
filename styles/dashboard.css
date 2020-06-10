@@ -33,6 +33,8 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
     min-height: 400px;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
 .center {
     display: block;
     margin-left: auto;
@@ -53,6 +55,10 @@ p { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size: 20px
   }
 
 
+=======
+>>>>>>> parent of a915bff... Merge branch 'master' of https://github.com/etiennedoidic/106-Visualization-Project
+=======
+>>>>>>> parent of a915bff... Merge branch 'master' of https://github.com/etiennedoidic/106-Visualization-Project
 .chart--container2 {
     height: 70%;
     width: 80%;
